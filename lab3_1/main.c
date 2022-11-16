@@ -6,7 +6,7 @@ void main()
 	int a;
 	float n;
 	printf("Enter 20:");
-	scanf("%d", &n);
+	scanf("%f", &n);
 	for(a=1626;a<=2022;a++){
 		n=n+n*0.04;
 	}

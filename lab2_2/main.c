@@ -8,7 +8,6 @@ void main()
 	scanf("%d",&a);
 	printf("Enter b:",b);
 	scanf("%d",&b);
-
 	printf("Enter c:",c);
 	scanf("%d",&c);
 	printf("Enter N:",N);
