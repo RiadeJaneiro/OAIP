@@ -1,11 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
-int main(int argc, char *argv[]) {
-	return 0;
+void main(void){
+	int size=15;
+	int a[size];
+	
+	int summ=0;
+	for(int i=0;i<size;i++){
+	a[i]=rand()%10;	
+	printf("%d ", a[i]);
+	summ+=a[i];
+	}
+	printf("\nsumm=%d",summ);
+	
+	double srednee=summ/size;
+	printf("\nsrednee=%f",srednee);
+	
+	int kolvo=0;
+	for(int i=0;i<size;i++){
+		if(a[i]>srednee)
+		kolvo++;
+	}
+	printf("\nkolichestvo=%d",kolvo);
 }
-
 //Определить количество элементов, значение которых больше среднего 
 //значения всех элементов массива.
