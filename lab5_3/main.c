@@ -1,45 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void main(void){
-  int i, j;
-  int b[3][3];
-  for (i = 0; i < 3; i++){		//ввод матрицы с клавиатуры
-    for (j = 0; j < 3; j++){
-      printf("Enter [%d][%d]: ", i+1, j+1);
-      scanf("%d", &b[i][j]);
-      printf("\n");
+int b[3][3] = {{5, 4, 9},
+               {1, 2, 3},
+               {0, 6, 8}};
+
+void asort(int *b){
+  for (int i = 0; i < 3; i++){		//сортировка пузырьком
+    int temp = b[i];
+	b[i] = b[3 - i - 1];
+	b[3 - i -1] = temp;
+	printf("%d ", b[i]);
     }
-  }
+}
+
   
-  for (i = 0; i < 3; i++){
+int main(void){
+  int i, j;
+  int resSt = 1;
+  for (i = 0; i < 3; i++){      //вывод матрицы
   	for (j = 0; j < 3; j++){
   	  printf("%d ", b[i][j]);
 	}
 	printf("\n"); 
   }
   
-  for (i = 0; i < 3; i++){
-  	for (j = 0; j < 3; j++){
-  	  if (b[i][j] < b[i][j + 1] || b[i][j + 1] < b[i][j + 2]){
-  	    int str = i;
-      }
-  	  else break;
-	}
-  }
-  printf("stroca: ", i + 1);
+  for (i = 0; i < 3; i++)      //поиск первой строки, все элементы которой упорядочены по возрастания
+  	printf("%d ", b[resSt][i]);
   
-  int k;
-  for (i = 0; i < 3; i++){
-  	for (j = 0; j < 3; j++){
-  	  for ( k = 0; k < 3; k++){
-  	    int temp = b[i][k + 1];
-		b[i][k + 1] = b[i][k];
-		b[i][k] = temp;	
-	  }
-    }
-  }
-  printf("%d", b[i][k]);
+  printf("\n");
+  asort(b[resSt]);
 }
 
 //Найти в матрице первую строку, все элементы которой 

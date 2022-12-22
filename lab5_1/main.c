@@ -3,11 +3,15 @@
 
 void main(void){
   int i, j;
-  int b[6][6];
+  int b[6][6] = {{-1, 7, 4, 0, 9, 4},
+                 {8, 8, 2, 4, 5, 5},
+				 {1, 7, 1, 1, 5, 2},
+				 {7, 6, 1, -4, 2, 3},
+				 {2, 2, 1, 6, 8, 5},
+				 {7, 6, 1, 8, 9, -2}};
 
-  for (i = 0; i < 6; i++){			//задаём матрицу рандомным образом
+  for (i = 0; i < 6; i++){			//вывод матрицы
     for (j = 0; j < 6; j++){
-      b[i][j]=rand() % 10;
       printf ("%d ", b[i][j]);
     }
   printf("\n");
@@ -21,14 +25,14 @@ void main(void){
     }
   }
   
-  for (i = 0; i < 6; i++){			//ищем количество одинаковые элементы в каждой строке
+  for (i = 0; i < 6; i++){			//поиск количества одинаковых элементов в каждой строке
     for (j = 0; j < 6; j++)
   	  for (k = 0; k < 6; k++){
   	    if (b[i][j] == b[i][k])
 		kol[i][j]++;	
 	  }
 //	for (j = 0; j < 6; j++)
-//    printf ("\nkol-vo povtor el v %d stroke: %d", i + 1, kol[i][j]);
+//    printf ("\nnumber of repeating elements in %в line: %d", i + 1, kol[i][j]);
   }
   
   for (i = 0; i < 6; i++){
@@ -36,25 +40,20 @@ void main(void){
   	for (j = 0; j < 6; j++){
   	  while (kol[i][j] > max){
   	    max = kol[i][j];	
+     	printf("\nmax number of repeating elements in %d line:%d", i + 1, max);
 	  }
  	}
- 	printf("\nmax kol-vo odinak elementov v %d stroke:%d\n", i + 1, max);
   }
-  
-  for (i = 0; i < 6; i++){    //cортировка пузырьком
-  	for (j = 0; j < 6; j++){
-  	  for (k = 0; k < 6 - j - 1; k++){
-  	    if (b[i][k] > b[i][k + 1]){
-  	  	  int temp = b[i][k];
-  	  	  b[i][k] = b[i][k +1];
-  	  	  b[i][k + 1] = temp;
-		}	
-	  }
-	printf("%d ", b[i][j]);
+
+  for (j = 0; j < 6; j++){    //поиск первого столбца с отрицательными элементами
+  	for (i = 0; i < 6; i++){
+ 	    if (b[i][j] > 0){
+ 	      printf("\nfirst column number without negative elements:%d", i + 1);
+ 	      break;
+  	  	  }
 	}
-  }
-  
-  
+	return -1;
+  }  
 }
 
 //Упорядочить строки целочисленной прямоугольной матрицы по 
