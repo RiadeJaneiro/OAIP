@@ -13,7 +13,7 @@ void main(void){
 			n++;
 	}
 	
-	printf("Speces: %d", n);
+	printf("Spaces: %d", n);
 }
 
 //Ввести строку. В функции посчитать количество пробелов.
