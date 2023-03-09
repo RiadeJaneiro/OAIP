@@ -12,10 +12,10 @@ struct person{
 	int age;
 };
 
-struct person persons[5], temp;
-int n = 0;
+struct person persons[5], temp;	//массивы структур
+int n = 0;	//переменная, хранящая количество человек 
 
-//1) Ввод массива структур;
+//Ввод массива структур
 void addPerson(void){
 	system("cls");  
 	fflush(stdin);
@@ -55,46 +55,22 @@ void addPerson(void){
 	}
 }
 
-//2) Сортировка массива структур; *добаить в 6)*
-void sort(struct personhumans[], int &n){
-	system("cls");  
-	fflush(stdin);
-	for(int j = 0; j < n; j++){
-		for(int i = 0; i < n - 1; i++){
-			if(stricmp(persons[i].last_name, persons[i + 1].last_name) > 0){
-				temp = persons[i];
-				persons[i] = persons[i + 1];
-				persons[i + 1] = temp;
-			}
-		}
-	}
-	
-	printf("Rez: ");
-	for(int i = 0; i < 5; i++){
-		printf("\n\n");
-		fputs(persons[i].last_name, stdout);
-	}
-}
-
-//3) Поиск в массиве структур по заданному параметру;
+//Поиск в массиве структур по заданному параметру
 void searchLastName(char *last_name){
 	system("cls");  
 	fflush(stdin);
 	printf("Enter last name: ");
 	scanf("%s", last_name);
 	for(int i = 0; i < 5; i++){
-		if (_stricmp(last_name, persons[i].last_name) == 0){
+		while(strcmp(last_name, persons[i].last_name) == 0){
 			printf("First name: \n", persons[i].first_name);
 			printf("Middle name: \n", persons[i].middle_name);
 			printf("Home adress: \n", persons[i].home_address);
 			printf("Phone number: \n", persons[i].phone_number);
 			printf("Age: \n", persons[i].age);
 		}
-		else{
-			printf("This last name was not found\n");
-			break;
-		}
 	}
+	printf("This last name was not found\n");
 }
 
 //4) Изменение заданной структуры;
@@ -154,10 +130,27 @@ void deletePerson(void){
 	}
 }
 
-//6) Вывод на экран массива структур;
+//Вывод на экран массива структур
 void showAllPersons(void){
 	system("cls");  
 	fflush(stdin);
+	
+	if(n == 0){
+		printf("No records.");
+	}
+	
+	//Сортировка массива структур
+	for(int i = 0; i < n - 1; i++){
+		for(int j = i = 1; j < n; j++){
+			if(strcmp(persons[i].last_name, persons[j].last_name) > 0){
+				temp = persons[i];
+				persons[i] = persons[j];
+				persons[j] = temp;
+			}
+		}
+	}
+	
+	
 	for(int i = 0; i < n; i++){
 		printf("Person %d\n", i + 1);
 
@@ -184,7 +177,6 @@ void showAllPersons(void){
 		fputs("Enter age: ", stdout);
 		fflush(stdin);
 		scanf("%d", &persons[i].age);
-	
 	}
 }
 
