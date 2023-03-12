@@ -19,7 +19,7 @@ int n = 0;	//переменная, хранящая количество чел�
 void addPerson(void){
 	system("cls");  
 	fflush(stdin);
-	for(n; n < 5; n++){
+	if(n < 5){
 		printf("Person %d\n", n + 1);
 
 		fputs("Enter last name: ", stdout);
@@ -34,7 +34,7 @@ void addPerson(void){
 		fflush(stdin);
 		fgets(persons[n].middle_name, 20, stdin);
 	
-		fputs("Enter home adress: ", stdout);
+		fputs("Enter home address: ", stdout);
 		fflush(stdin);
 		fgets(persons[n].home_address, 20, stdin);
 	
@@ -45,35 +45,45 @@ void addPerson(void){
 		fputs("Enter age: ", stdout);
 		fflush(stdin);
 		scanf("%d", &persons[n].age);
-	
-		printf("Stop (1 - Yes, 0 - No): ");
-		int m;
-		scanf("%d", &m);
-		if(m == 1){
-			break;
-		}
+		n++;
 	}
+	else{
+		printf("Maximum number of people entered\n");
+	}
+	
+	printf("Enter 0 to return: ");
+    int i;
+    scanf("%d", &i);
+    if(i == 0){
+        return;
+    }
 }
 
 //Поиск в массиве структур по заданному параметру
 void searchLastName(char *last_name){
 	system("cls");  
 	fflush(stdin);
-	printf("Enter last name: ");
-	scanf("%s", last_name);
+//	printf("Enter last name: ");
+//	scanf("%s", last_name);
 	for(int i = 0; i < 5; i++){
-		while(strcmp(last_name, persons[i].last_name) == 0){
+		while(_stricmp(last_name, persons[i].last_name) == 0){
 			printf("First name: \n", persons[i].first_name);
 			printf("Middle name: \n", persons[i].middle_name);
-			printf("Home adress: \n", persons[i].home_address);
+			printf("Home address: \n", persons[i].home_address);
 			printf("Phone number: \n", persons[i].phone_number);
 			printf("Age: \n", persons[i].age);
 		}
 	}
 	printf("This last name was not found\n");
+	printf("Enter 0 to return: ");
+	int i;
+	scanf("%d", &i);
+	if(i == 0){
+		return;
+	}
 }
 
-//4) Изменение заданной структуры;
+//Изменение заданной структуры
 void editPerson(void){
 	system("cls");  
 	fflush(stdin);
@@ -83,43 +93,36 @@ void editPerson(void){
 	if(num > n){
 		return;
 	}
-	struct person persons[5];
-	fputs("Enter last name: ", stdout);
-	fflush(stdin);
-	fgets(persons[n].last_name, 30, stdin);
+	printf("Enter last name: ");
+	scanf("%s", persons[num].last_name);
 
-	fputs("Enter first name: ", stdout);
-	fflush(stdin);
-	fgets(persons[n].first_name, 10, stdin);
+	printf("Enter first name: ");
+	scanf("%s", persons[num].first_name);
 
-	fputs("Enter middle name: ", stdout);
-	fflush(stdin);
-	fgets(persons[n].middle_name, 20, stdin);
+	printf("Enter middle name: ");
+	scanf("%s", persons[num].middle_name);
 	
-	fputs("Enter home adress: ", stdout);
-	fflush(stdin);
-	fgets(persons[n].home_address, 20, stdin);
+	printf("Enter home address: ");
+	scanf("%s", persons[num].home_address);
 	
-	fputs("Enter phone number: +", stdout);
-	fflush(stdin);
-	scanf("%d", &persons[n].phone_number);
+	printf("Enter phone number: +");
+	scanf("%d", &persons[num].phone_number);
 	
-	fputs("Enter age: ", stdout);
-	fflush(stdin);
-	scanf("%d", &persons[n].age);
+	printf("Enter age: ", stdout);
+	scanf("%d", &persons[num].age);
 }
 
-//5) Удаление структуры из массива;
+//Удаление структуры из массива
 void deletePerson(void){
 	system("cls");  
 	fflush(stdin);
 	int num;
 	printf("Enter person number to delete: ");
-	scanf("%n", &num);
-	if(num > n){
+	scanf("%d", &num);
+	if(num > n){	
 		return;
 	}
-	printf("Are you sure you want to delete this person? (1 - Yes, 0 - No)");
+	printf("Are you sure you want to delete this person? (1 - Yes, 0 - No): ");
 	int i;
 	scanf("%d", &i);
 	if(i != 0){
@@ -136,12 +139,12 @@ void showAllPersons(void){
 	fflush(stdin);
 	
 	if(n == 0){
-		printf("No records.");
+		printf("No records.\n");
 	}
 	
 	//Сортировка массива структур
 	for(int i = 0; i < n - 1; i++){
-		for(int j = i = 1; j < n; j++){
+		for(int j = i + 1; j < n; j++){
 			if(strcmp(persons[i].last_name, persons[j].last_name) > 0){
 				temp = persons[i];
 				persons[i] = persons[j];
@@ -153,61 +156,60 @@ void showAllPersons(void){
 	
 	for(int i = 0; i < n; i++){
 		printf("Person %d\n", i + 1);
-
-		fputs("Enter last name: ", stdout);
-		fflush(stdin);
-		fgets(persons[i].last_name, 30, stdin);
-
-		fputs("Enter first name: ", stdout);
-		fflush(stdin);
-		fgets(persons[i].first_name, 10, stdin);
-
-		fputs("Enter middle name: ", stdout);
-		fflush(stdin);
-		fgets(persons[i].middle_name, 20, stdin);
+		printf("Enter last name: %s", persons[i].last_name);
+		printf("Enter first name: %s", persons[i].first_name);
+		printf("Enter middle name: %s", persons[i].middle_name);
+		printf("Enter home address: %s", persons[i].home_address);
+		printf("Enter phone number: +%d\n", persons[i].phone_number);
+		printf("Enter age: %d\n\n", persons[i].age);
+	}
 	
-		fputs("Enter home adress: ", stdout);
+	printf("Enter 0 to return: ");
+    int i;
+    scanf("%d", &i);
+    if(i == 0){
+        return;
+    }
+}
+
+void menu(void){
+		while(1){
+		system("cls");
 		fflush(stdin);
-		fgets(persons[i].home_address, 20, stdin);
-	
-		fputs("Enter phone number: +", stdout);
-		fflush(stdin);
-		scanf("%d", &persons[i].phone_number);
-	
-		fputs("Enter age: ", stdout);
-		fflush(stdin);
-		scanf("%d", &persons[i].age);
+		char last_name[20];
+		printf("1.Add person\n");
+		printf("2.Search last name\n");//*
+		printf("3.Edit person\n");//*
+		printf("4.Delete person\n");
+		printf("5.Show all persons\n");
+		printf("6.Exit\n");
+		printf("Select number: ");
+		int i;
+		scanf("%d", &i);
+		getchar();
+		switch(i){
+			case 1:	
+				addPerson();
+				break;
+			case 2:
+				printf("Enter last name: ", last_name);
+				searchLastName(last_name);
+				break;
+			case 3:
+				editPerson();
+				break;
+			case 4:
+				deletePerson();
+				break;
+			case 5:
+				showAllPersons();
+				break;
+			case 6:
+				return;
+		}
 	}
 }
 
-int main(void) {
-	char last_name[20];
-	printf("1.Add person\n");
-	printf("2.Search last name\n");
-	printf("3.Edit person\n");
-	printf("4.Delete person\n");
-	printf("5.Show all persons\n");
-	printf("6.Exit\n");
-	printf("Select number: ");
-	int i;
-	scanf("%d", &i);
-	switch(i){
-		case 1:
-			addPerson();
-			break;
-		case 2:
-			searchLastName(last_name);
-			break;
-		case 3:
-			editPerson();
-			break;
-		case 4:
-			deletePerson();
-			break;
-		case 5:
-			showAllPersons();
-			break;
-		defoult:
-			break;
-	}
+int main(void){
+	menu();
 }
