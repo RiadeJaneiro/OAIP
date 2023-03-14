@@ -63,8 +63,8 @@ void addPerson(void){
 void searchLastName(char *last_name){
 	system("cls");  
 	fflush(stdin);
-//	printf("Enter last name: ");
-//	scanf("%s", last_name);
+	printf("Enter last name: ");
+	scanf("%s", last_name);
 	for(int i = 0; i < 5; i++){
 		while(_stricmp(last_name, persons[i].last_name) == 0){
 			printf("First name: \n", persons[i].first_name);
@@ -94,22 +94,22 @@ void editPerson(void){
 		return;
 	}
 	printf("Enter last name: ");
-	scanf("%s", persons[num].last_name);
+	scanf("%s", &persons->last_name);
 
 	printf("Enter first name: ");
-	scanf("%s", persons[num].first_name);
+	scanf("%s", &persons->first_name);
 
 	printf("Enter middle name: ");
-	scanf("%s", persons[num].middle_name);
+	scanf("%s", &persons->middle_name);
 	
 	printf("Enter home address: ");
-	scanf("%s", persons[num].home_address);
+	scanf("%s", &persons->home_address);
 	
-	printf("Enter phone number: +");
-	scanf("%d", &persons[num].phone_number);
+	printf("Enter phone number: + ");
+	scanf("%d", &persons->phone_number);
 	
 	printf("Enter age: ", stdout);
-	scanf("%d", &persons[num].age);
+	scanf("%d", &persons->age);
 }
 
 //Удаление структуры из массива
@@ -153,15 +153,14 @@ void showAllPersons(void){
 		}
 	}
 	
-	
 	for(int i = 0; i < n; i++){
 		printf("Person %d\n", i + 1);
-		printf("Enter last name: %s", persons[i].last_name);
-		printf("Enter first name: %s", persons[i].first_name);
-		printf("Enter middle name: %s", persons[i].middle_name);
-		printf("Enter home address: %s", persons[i].home_address);
-		printf("Enter phone number: +%d\n", persons[i].phone_number);
-		printf("Enter age: %d\n\n", persons[i].age);
+		printf("\nEnter last name: %s", persons[i].last_name);
+		printf("\nEnter first name: %s", persons[i].first_name);
+		printf("\nEnter middle name: %s", persons[i].middle_name);
+		printf("\nEnter home address: %s", persons[i].home_address);
+		printf("\nEnter phone number: +%d\n", persons[i].phone_number);
+		printf("\nEnter age: %d\n\n", persons[i].age);
 	}
 	
 	printf("Enter 0 to return: ");
@@ -192,7 +191,6 @@ void menu(void){
 				addPerson();
 				break;
 			case 2:
-				printf("Enter last name: ", last_name);
 				searchLastName(last_name);
 				break;
 			case 3:
