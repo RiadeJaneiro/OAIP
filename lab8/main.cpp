@@ -21,7 +21,7 @@ void addPerson(void){
 	fflush(stdin);
 	if(n < 5){
 		printf("Person %d\n", n + 1);
-
+		
 		fputs("Enter last name: ", stdout);
 		fflush(stdin);
 		fgets(persons[n].last_name, 30, stdin);
@@ -60,21 +60,22 @@ void addPerson(void){
 }
 
 //Поиск в массиве структур по заданному параметру
-void searchLastName(char *last_name){
+void searchLastName(void){
 	system("cls");  
 	fflush(stdin);
+	char last_name[20];
 	printf("Enter last name: ");
-	scanf("%s", last_name);
+	fgets(last_name, 20, stdin);
 	for(int i = 0; i < 5; i++){
-		while(_stricmp(last_name, persons[i].last_name) == 0){
-			printf("First name: \n", persons[i].first_name);
-			printf("Middle name: \n", persons[i].middle_name);
-			printf("Home address: \n", persons[i].home_address);
-			printf("Phone number: \n", persons[i].phone_number);
-			printf("Age: \n", persons[i].age);
+		if(strcmp(persons[i].last_name, last_name) == 0){
+			printf("Found: ");
+			printf("First name: %s\n", persons[i].first_name);
+			printf("Middle name: %s\n", persons[i].middle_name);
+			printf("Home address: %s\n", persons[i].home_address);
+			printf("Phone number: +%d\n", persons[i].phone_number);
+			printf("Age: %d\n", persons[i].age);
 		}
 	}
-	printf("This last name was not found\n");
 	printf("Enter 0 to return: ");
 	int i;
 	scanf("%d", &i);
@@ -172,13 +173,14 @@ void showAllPersons(void){
 }
 
 void menu(void){
+		int isFound;
 		while(1){
 		system("cls");
 		fflush(stdin);
 		char last_name[20];
 		printf("1.Add person\n");
-		printf("2.Search last name\n");//*
-		printf("3.Edit person\n");//*
+		printf("2.Search last name\n");
+		printf("3.Edit person\n");
 		printf("4.Delete person\n");
 		printf("5.Show all persons\n");
 		printf("6.Exit\n");
@@ -191,7 +193,7 @@ void menu(void){
 				addPerson();
 				break;
 			case 2:
-				searchLastName(last_name);
+				searchLastName();
 				break;
 			case 3:
 				editPerson();
