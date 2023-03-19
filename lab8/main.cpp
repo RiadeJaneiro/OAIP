@@ -68,12 +68,12 @@ void searchLastName(void){
 	fgets(last_name, 20, stdin);
 	for(int i = 0; i < 5; i++){
 		if(strcmp(persons[i].last_name, last_name) == 0){
-			printf("Found: ");
-			printf("First name: %s\n", persons[i].first_name);
-			printf("Middle name: %s\n", persons[i].middle_name);
-			printf("Home address: %s\n", persons[i].home_address);
-			printf("Phone number: +%d\n", persons[i].phone_number);
-			printf("Age: %d\n", persons[i].age);
+			printf("Found: \n");
+			printf("First name: %s", persons[i].first_name);
+			printf("Middle name: %s", persons[i].middle_name);
+			printf("Home address: %s", persons[i].home_address);
+			printf("Phone number: +%d", persons[i].phone_number);
+			printf("\nAge: %d\n", persons[i].age);
 		}
 	}
 	printf("Enter 0 to return: ");
@@ -94,22 +94,23 @@ void editPerson(void){
 	if(num > n){
 		return;
 	}
-	printf("Enter last name: ");
-	scanf("%s", &persons->last_name);
+	getchar();
+	printf("Enter last name: ", stdout);
+	fgets(persons->last_name, 30, stdin);
 
-	printf("Enter first name: ");
-	scanf("%s", &persons->first_name);
+	fputs("Enter first name: ", stdout);
+	fgets(persons->first_name, 10, stdin);
 
-	printf("Enter middle name: ");
-	scanf("%s", &persons->middle_name);
+	fputs("Enter middle name: ", stdout);
+	fgets(persons->middle_name, 20, stdin);
 	
-	printf("Enter home address: ");
-	scanf("%s", &persons->home_address);
+	fputs("Enter home address: ", stdout);
+	fgets(persons->home_address, 20, stdin);
 	
-	printf("Enter phone number: + ");
+	fputs("Enter phone number: +", stdout);
 	scanf("%d", &persons->phone_number);
 	
-	printf("Enter age: ", stdout);
+	fputs("Enter age: ", stdout);
 	scanf("%d", &persons->age);
 }
 
@@ -140,7 +141,7 @@ void showAllPersons(void){
 	fflush(stdin);
 	
 	if(n == 0){
-		printf("No records.\n");
+		printf("No records.");
 	}
 	
 	//Сортировка массива структур
@@ -156,15 +157,15 @@ void showAllPersons(void){
 	
 	for(int i = 0; i < n; i++){
 		printf("Person %d\n", i + 1);
-		printf("\nEnter last name: %s", persons[i].last_name);
-		printf("\nEnter first name: %s", persons[i].first_name);
-		printf("\nEnter middle name: %s", persons[i].middle_name);
-		printf("\nEnter home address: %s", persons[i].home_address);
-		printf("\nEnter phone number: +%d\n", persons[i].phone_number);
-		printf("\nEnter age: %d\n\n", persons[i].age);
+		printf("Enter last name: %s", persons[i].last_name);
+		printf("Enter first name: %s", persons[i].first_name);
+		printf("Enter middle name: %s", persons[i].middle_name);
+		printf("Enter home address: %s", persons[i].home_address);
+		printf("Enter phone number: +%d", persons[i].phone_number);
+		printf("\nEnter age: %d\n", persons[i].age);
 	}
 	
-	printf("Enter 0 to return: ");
+	printf("\nEnter 0 to return: ");
     int i;
     scanf("%d", &i);
     if(i == 0){
