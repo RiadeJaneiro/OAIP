@@ -157,12 +157,12 @@ void showAllPersons(void){
 	
 	for(int i = 0; i < n; i++){
 		printf("Person %d\n", i + 1);
-		printf("Enter last name: %s", persons[i].last_name);
-		printf("Enter first name: %s", persons[i].first_name);
-		printf("Enter middle name: %s", persons[i].middle_name);
-		printf("Enter home address: %s", persons[i].home_address);
-		printf("Enter phone number: +%d", persons[i].phone_number);
-		printf("\nEnter age: %d\n", persons[i].age);
+		printf("Last name: %s", persons[i].last_name);
+		printf("First name: %s", persons[i].first_name);
+		printf("Middle name: %s", persons[i].middle_name);
+		printf("Home address: %s", persons[i].home_address);
+		printf("Phone number: +%d", persons[i].phone_number);
+		printf("\nAge: %d\n", persons[i].age);
 	}
 	
 	printf("\nEnter 0 to return: ");
