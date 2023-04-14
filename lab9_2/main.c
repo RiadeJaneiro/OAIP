@@ -45,18 +45,19 @@ void searchName(void){	//поиск по названию государства
 	if(state_num == 0){
 		return;
 	}
-	
+	int flag = 1;
 	printf("Enter name: ");
 	fgets(name, 20, stdin);
 	for(int i = 0; i < state_num; i++){
 		if(strcmp(name, states[i].name) == 0){
+			flag = 0;
 			printf("Capital: %s", states[i].capital);
 			printf("Populatin (mln): %d\n", states[i].population);
 			printf("Area (m^2): %d\n", states[i].area);
 		}
-		else{
-			printf("Not found\n");
-		}
+	}
+	if(flag == 1){
+		printf("Not found!\n");
 	}
 	printf("Enter 0 to return: ");
 	int i;
