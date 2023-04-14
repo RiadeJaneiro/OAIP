@@ -1,4 +1,4 @@
-//Gauss Seidel C Program
+/* Simple iteration method */
 #include <stdio.h>
 #include <conio.h>
 #include <math.h>
@@ -8,64 +8,55 @@
    0.48x - 0.24y + 0.37z = - 0.84
    0.86x + 0.43y + 0.64z = 0.64
 */
-/* Subtract the third equation from 
-   the first and write a new equation 
-   instead of the third
-   0.20x + 1.87y + 0.82z = - 1.19
-   0.48x - 0.24y + 0.37z = - 0.84
-   0.86x + 0.43y + 0.64z = 0.64
-*/
 /* Arranging given system of linear
    equations in diagonally dominant
    form:
    0.86x + 0.43y + 0.64z = 0.64
    0.66x - 1.44y - 0.18z = 1.83
-   2x - 3y + 20z = 25
+   0.48x - 0.24y + 0.37z = - 0.84
 */
 /* Equations:
-   x = (17-y+2z)/20
-   y = (-18-3x+z)/20
-   z = (25-2x+3y)/20
+   x = (0.64 - 0.43y - 0.64z)/0.86
+   y = (-1.83 + 0.66x - 0.18z)/1.44
+   z = (- 0.84 - 0.48x + 0.24y)/0.37
 */
 /* Defining function */
-#define f1(x,y,z)  (5+y-3*z)/5
-#define f2(x,y,z)  (20-x-2*z)/(-4)
-#define f3(x,y,z)  (10-2*x+y)/5
+#define f1(x,y,z)  (0.64 - 0.43*y - 0.64*z)/0.86
+#define f2(x,y,z)  (-1.83 + 0.66*x - 0.18*z)/1.44
+#define f3(x,y,z)  (- 0.84 - 0.48*x + 0.24*y)/0.37
 
 /* Main function */
-int main()
-{
- float x0=0, y0=0, z0=0, x1, y1, z1, e1, e2, e3, e;
- int count=1;
-// clrscr();
- printf("Enter tolerable error:\n");
- scanf("%f", &e);
+int main(){
+	float x0 = 0, y0 = 0, z0 = 0, x1, y1, z1, ex, ey, ez, e;
+	int count = 1;
 
- printf("\nCount\tx\ty\tz\te1\te2\te3\n");
- do
- {
-  /* Calculation */
-  x1 = f1(x0,y0,z0);
-  y1 = f2(x0,y0,z0);
-  z1 = f3(x0,y0,z0);
-  printf("%d\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\t%0.4f\n",count, x1,y1,z1);
+	printf("Enter tolerable error: ");
+	scanf("%f", &e);
 
-  /* Error */
-  e1 = fabs(x0-x1);
-  e2 = fabs(y0-y1);
-  e3 = fabs(z0-z1);
+	printf("\nCount\tx\ty\tz\n");
+	do{
+		//find the approximations
+		x1 = f1(x0, y0, z0);
+		y1 = f2(x0, y0, z0);
+		z1 = f3(x0, y0, z0);
+		//display in the output
+		printf("%d\t%0.4f\t%0.4f\t%0.4f\n", count, x1, y1, z1);
 
-  count++;
+		//calculate errors
+		ex = fabs(x0 - x1);
+		ey = fabs(y0 - y1);
+		ez = fabs(z0 - z1);
 
-  /* Set value for next iteration */
-  x0 = x1;
-  y0 = y1;
-  z0 = z1;
+		count++;
 
- }while(e1>e && e2>e && e3>e);
+		//set value for next iteration
+		x0 = x1;
+		y0 = y1;
+		z0 = z1;
+	}while(ex > e && ey > e && ez > e);
 
- printf("\nSolution: x=%0.3f, y=%0.3f and z = %0.3f\n",x1,y1,z1);
+	printf("\nSolution: x=%0.3f, y=%0.3f and z = %0.3f\n",x1,y1,z1);
 
- getch();
- return 0;
+	getch();
+	return 0;
 }
