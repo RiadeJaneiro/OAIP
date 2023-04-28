@@ -1,44 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#define TABLE_SIZE 7
 
 //structure for storing a table elements
-typedef struct{
-	int key;
-	char *value;
-}item;
+struct zap{
+    int key;
+    int info;
+}data[5];
 
 //hash function
-int hash(int key){
-	return key % TABLE_SIZE;
+int HashFunction(int k){
+    return(k % 10 - 5);
 }
 
-int main(void){
-	//creating a table
-	item items[] = {{1, "foo"}, {-4, "bar"}, {6, "bazz"}, {10, "buzz"},
-        			{9, "bob"}, {-5, "jane"}, {-7, "x"}}; 
-    
-	//output the original table
-	printf("The original table:\n");
-	for (int i = 0; i < TABLE_SIZE; i++){
-		printf("%d: %d\n", items[i].key, items[i].value);
-	}
-  
-	//removing elements with negative keys
-	for(int i = 0; i < TABLE_SIZE; i++){
-		if (items[i].key < 0){
-    		items[i].key = 0;
-    		items[i].value = 0;
+//creating and displaying a table
+int value(void){
+    for(int i = 0; i < 5; i++){
+        printf("Key = ");
+        scanf("%d", &data[i].key);
+        data[i].info = HashFunction(data[i].key);
+        printf("Hash_Function(%d) = %d\n", data[i].key, data[i].info);
+        if(i < 4){
+        	printf("Enter 0 to return or 1 to continue: ");
+        	int m;
+        	scanf("%d", &m);
+    	    printf("\n");
+			if(m == 0){
+            	return 0;
+        	}
 		}
-  	}
-  
-	//output the new table
-	printf("\nThe new table:\n");
-	for(int i = 0; i < TABLE_SIZE; i++){
-		printf("%d: %d\n", items[i].key, items[i].value);
+    }
+}
+
+int main(){
+    value();
+    //removing elements with negative values
+    for(int i = 0; i < 5; i++){
+        if(data[i].key < 0){
+            data[i].key = 0;
+            data[i].info = 0;
+        }
+    }
+    
+    //output the new table
+    printf("\nThe new table:\n");
+	for(int i = 0; i < 5; i++){
+		printf("%d: %d\n", data[i].key, data[i].info);
 	}
-//	getchar();
 	return 0;
 }
 
