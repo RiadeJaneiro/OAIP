@@ -71,7 +71,19 @@ int main(void){
 	
 	//merging two arrays
 	for(int i = 0; i < 17; i++){
-		if(arr1[j] >= arr2[k] && j < 10 && k < 7){
+		if(j == 10){
+			for(i; i < 17; i++){
+				arr[i] = arr2[k];
+				k++;
+			}
+		}
+		else if(k == 7){
+			for(i; i < 17; i++){
+				arr[i] = arr1[j];
+				j++;
+			}
+		}
+		else if(arr1[j] >= arr2[k] && j < 10 && k < 7){
 			arr[i] = arr1[j];
 			j++;
 		}
